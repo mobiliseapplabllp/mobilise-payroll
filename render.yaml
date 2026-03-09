@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: mobilise-payroll
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: cd server && npm install && cd ../client && npm install && cd ../client && npx vite build
+    startCommand: cd server && node src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 8h
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: CLIENT_URL
+        fromService:
+          type: web
+          name: mobilise-payroll
+          property: host
+      - key: UPLOAD_DIR
+        value: ./uploads

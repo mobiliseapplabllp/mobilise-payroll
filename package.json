@@ -1,0 +1,14 @@
+{
+  "name": "mobilise-payroll-v4",
+  "version": "4.0.0",
+  "description": "Mobilise Payroll - Enterprise Multi-Entity Payroll System",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "seed": "cd server && node scripts/seed.js",
+    "build": "cd client && npm install && npx vite build",
+    "start": "cd server && node src/index.js"
+  },
+  "engines": { "node": "22.x" },
+  "devDependencies": { "concurrently": "^8.2.0" }
+}
